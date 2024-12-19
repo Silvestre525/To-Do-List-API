@@ -38,7 +38,30 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.tasks',
+    'drf_spectacular',
+    'rest_framework',
 ]
+
+# Configuración de Swagger
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API Task',  # El título de tu API
+    'DESCRIPTION': 'API Para tareas',  # Una descripción de tu API
+    'VERSION': '1.0.0',  # La versión de tu API
+    'SERVERS': [
+        {'url': 'http://127.0.0.1:8000', 'description': 'Servidor de desarrollo'}, #url de tu servidor
+    ],
+    'SCHEMA_PATH_PREFIX': r"/api/", #Prefijo que tendran tus urls de la api, por ejemplo si tienes urls como api/users, api/products, etc.
+    # Otras configuraciones opcionales:
+    # 'SCHEMA_FILE': 'schema.yaml', #Para guardar el esquema en un archivo
+    # 'SERVE_INCLUDE_SCHEMA': False, #Para no incluir el esquema en la ui de swagger
+    # 'ENUM_NAME_OVERRIDES': { #Para personalizar los nombres de los enums
+    #     'YourEnum': 'CustomNameForYourEnum'
+    # },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
